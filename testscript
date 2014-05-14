@@ -1,0 +1,8 @@
+vmorph lungim1 s=20,20 -ed | vmorph s=20,20 -de of=lungim1.int
+./vits lungim1.int | vdist -2d -c | ./watershed of=lungim1.ext
+vpix if=lungim1.int th=0 of=temp
+vop if=temp ig=lungim1.ext -or of=lungim1.mark
+vsobel lungim1 of=temp
+./watershed if=temp ig=lungim1.154mark of=lungim1.154wshed
+
+rm temp
